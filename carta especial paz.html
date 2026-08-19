@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Carta gótica para Leila 🖤</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=UnifrakturCook:wght@700&display=swap');
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    min-height: 100dvh;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #302733 0%,
+            #17131a 45%,
+            #08070a 100%
+        );
+
+    font-family: "Cinzel", serif;
+    color: white;
+}
+
+/* ✦ DECORACIÓN DEL FONDO ✦ */
+
+body::before {
+    content: "✦   ☾   †   ✧   ☽   ✦   †   ✧";
+
+    position: fixed;
+    top: 7%;
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    color: rgba(220, 200, 225, 0.12);
+
+    font-size: clamp(16px, 3vw, 28px);
+
+    letter-spacing: clamp(4px, 1.5vw, 15px);
+
+    pointer-events: none;
+}
+
+body::after {
+    content: "†";
+
+    position: fixed;
+
+    font-size: clamp(220px, 35vw, 420px);
+
+    color: rgba(255,255,255,0.015);
+
+    z-index: -1;
+
+    pointer-events: none;
+}
+
+/* BORDE */
+
+.fondo-borde {
+    position: fixed;
+
+    inset: 12px;
+
+    border: 1px solid rgba(220,200,225,0.18);
+
+    box-shadow:
+        inset 0 0 80px rgba(0,0,0,0.8),
+        0 0 40px rgba(0,0,0,0.5);
+
+    pointer-events: none;
+}
+
+/* TÍTULO */
+
+.titulo {
+    position: fixed;
+
+    top: clamp(25px, 5vh, 40px);
+
+    width: 100%;
+
+    text-align: center;
+
+    padding: 0 15px;
+
+    font-family: "UnifrakturCook", cursive;
+
+    font-size: clamp(25px, 6vw, 38px);
+
+    color: #ddd0df;
+
+    text-shadow:
+        0 0 10px rgba(220,200,230,0.3);
+
+    pointer-events: none;
+}
+
+.subtitulo {
+    position: fixed;
+
+    top: clamp(65px, 11vh, 85px);
+
+    width: 100%;
+
+    text-align: center;
+
+    padding: 0 15px;
+
+    font-size: clamp(8px, 2vw, 11px);
+
+    letter-spacing: clamp(2px, 1vw, 4px);
+
+    opacity: 0.5;
+
+    pointer-events: none;
+}
+
+/* ESCENA */
+
+.escena {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    perspective: 1500px;
+}
+
+/* SOBRE */
+
+.sobre {
+    position: relative;
+
+    width: min(520px, 82vw);
+
+    aspect-ratio: 520 / 310;
+
+    cursor: pointer;
+
+    transform-style: preserve-3d;
+
+    filter:
+        drop-shadow(
+            0 25px 25px rgba(0,0,0,0.7)
+        );
+
+    transition:
+        transform 0.4s ease;
+}
+
+.sobre:hover {
+    transform: translateY(-7px);
+}
+
+/* BASE */
+
+.base {
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.04),
+            transparent 60%
+        ),
+        #151217;
+
+    border: 2px solid #827586;
+
+    border-radius: 8px;
+
+    box-shadow:
+        inset 0 0 0 6px #0b0a0d,
+        inset 0 0 30px #000;
+}
+
+.base::before {
+    content: "☾   ✦   †   ✧   ☽";
+
+    position: absolute;
+
+    top: 12px;
+
+    width: 100%;
+
+    text-align: center;
+
+    color: #aaa0ad;
+
+    font-size: clamp(11px, 3vw, 17px);
+
+    letter-spacing: clamp(4px, 2vw, 10px);
+}
+
+.base::after {
+    content: "†";
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    font-size: clamp(70px, 15vw, 110px);
+
+    color: rgba(220,210,225,0.07);
+}
+
+/* SOLAPA */
+
+.solapa {
+    position: absolute;
+
+    z-index: 8;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 60%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #28232b,
+            #0c0b0f
+        );
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
+
+    border: 2px solid #827586;
+
+    transform-origin: top center;
+
+    transition:
+        transform 1s cubic-bezier(.2,.8,.2,1);
+}
+
+.solapa::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 25%;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size: clamp(25px, 7vw, 42px);
+
+    color: #c5b8c8;
+}
+
+/* BOLSILLO */
+
+.bolsillo {
+    position: absolute;
+
+    z-index: 6;
+
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 67%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #241f26,
+            #0c0b0e
+        );
+
+    clip-path: polygon(
+        0 100%,
+        0 30%,
+        50% 70%,
+        100% 30%,
+        100% 100%
+    );
+
+    border: 2px solid #756b77;
+}
+
+/* SELLO */
+
+.sello {
+    position: absolute;
+
+    z-index: 15;
+
+    left: 50%;
+    top: 50%;
+
+    width: clamp(48px, 13vw, 68px);
+    height: clamp(48px, 13vw, 68px);
+
+    transform:
+        translate(-50%, -15%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            #3b3440,
+            #09080b 70%
+        );
+
+    border: 2px solid #a194a5;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: clamp(22px, 6vw, 30px);
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,0.7);
+
+    transition:
+        opacity 0.4s,
+        transform 0.7s;
+}
+
+/* ═══════════════════════════════
+   CARTA
+   ═══════════════════════════════ */
+
+.carta {
+    position: absolute;
+
+    z-index: 5;
+
+    width: min(440px, 88vw);
+
+    height: min(500px, 65vh);
+
+    left: 50%;
+    top: 25px;
+
+    transform:
+        translateX(-50%)
+        translateY(0)
+        scale(0.95);
+
+    opacity: 0;
+
+    padding: clamp(20px, 5vw, 32px);
+
+    overflow-y: auto;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(0,0,0,0.07),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(0,0,0,0.05),
+            transparent 30%
+        ),
+
+        #e8dfd0;
+
+    color: #151218;
+
+    border: 2px solid #272027;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.7);
+
+    transition:
+        transform 1.2s cubic-bezier(.2,.85,.2,1),
+        opacity 0.5s;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #514655
+        #d3c8b9;
+}
+
+/* SCROLLBAR */
+
+.carta::-webkit-scrollbar {
+    width: 6px;
+}
+
+.carta::-webkit-scrollbar-track {
+    background: #d3c8b9;
+}
+
+.carta::-webkit-scrollbar-thumb {
+    background: #514655;
+
+    border-radius: 10px;
+}
+
+/* DECORACIÓN */
+
+.carta::before {
+    content: "†   ✦   †";
+
+    display: block;
+
+    text-align: center;
+
+    font-size: 20px;
+
+    margin-bottom: 15px;
+
+    opacity: 0.6;
+}
+
+.carta::after {
+    content: "✦";
+
+    position: absolute;
+
+    bottom: 10px;
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    opacity: 0.5;
+}
+
+/* TÍTULO DE CARTA */
+
+.carta h2 {
+    margin:
+        0 0 20px;
+
+    text-align: center;
+
+    font-family:
+        "UnifrakturCook",
+        cursive;
+
+    font-size:
+        clamp(25px, 7vw, 30px);
+}
+
+/* TEXTO */
+
+.carta p {
+    margin: 0;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(14px, 3.8vw, 16px);
+
+    line-height: 1.65;
+
+    text-align: center;
+}
+
+.carta em {
+    font-style: italic;
+}
+
+/* SOBRE ABIERTO */
+
+.sobre.abierto .solapa {
+    transform:
+        rotateX(180deg);
+
+    z-index: 3;
+}
+
+.sobre.abierto .carta {
+
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(
+            clamp(-330px, -48vh, -250px)
+        )
+        scale(1);
+
+    z-index: 20;
+}
+
+.sobre.abierto .sello {
+
+    opacity: 0;
+
+    transform:
+        translate(-50%, 20px)
+        scale(0.5);
+}
+
+.sobre.abierto {
+
+    transform:
+        translateY(45px);
+}
+
+/* INDICACIÓN */
+
+.indicacion {
+    position: fixed;
+
+    bottom:
+        clamp(18px, 5vh, 35px);
+
+    width: 100%;
+
+    text-align: center;
+
+    padding: 0 10px;
+
+    font-size:
+        clamp(9px, 2.5vw, 12px);
+
+    letter-spacing:
+        clamp(1px, 0.8vw, 3px);
+
+    opacity: 0.55;
+
+    pointer-events: none;
+}
+
+/* ═══════════════════════════════
+   CELULARES PEQUEÑOS
+   ═══════════════════════════════ */
+
+@media (max-width: 500px) {
+
+    .fondo-borde {
+        inset: 8px;
+    }
+
+    .sobre {
+        width: 82vw;
+    }
+
+    .carta {
+        width: 88vw;
+
+        height: 62vh;
+
+        max-height: 500px;
+    }
+
+    .sobre.abierto .carta {
+        transform:
+            translateX(-50%)
+            translateY(-43vh)
+            scale(1);
+    }
+}
+
+/* CELULARES MUY PEQUEÑOS */
+
+@media (max-height: 650px) {
+
+    .titulo {
+        top: 15px;
+    }
+
+    .subtitulo {
+        top: 52px;
+    }
+
+    .sobre {
+        width: 75vw;
+    }
+
+    .carta {
+        height: 58vh;
+    }
+
+    .sobre.abierto .carta {
+        transform:
+            translateX(-50%)
+            translateY(-39vh)
+            scale(0.92);
+    }
+
+    .indicacion {
+        bottom: 10px;
+    }
+}
+
+/* PC GRANDE */
+
+@media (min-width: 1000px) {
+
+    .carta {
+        height: 500px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="fondo-borde"></div>
+
+<div class="titulo">
+    𝕮𝖆𝖗𝖙𝖆 𝖕𝖆𝖗𝖆 𝕷𝖊𝖎𝖑𝖆 🖤
+</div>
+
+<div class="subtitulo">
+    TOCA EL SOBRE PARA ABRIRLO
+</div>
+
+
+<div class="escena">
+
+    <div class="sobre" id="sobre">
+
+        <!-- BASE -->
+
+        <div class="base"></div>
+
+
+        <!-- CARTA -->
+
+        <div class="carta">
+
+            <h2>
+                Para Leila 🖤
+            </h2>
+
+            <p>
+
+                <strong>
+                    te quiero mucho zonze lit 😭🖤
+                </strong>
+
+                <br><br>
+
+                pero iwual se que hablamos poco pero hablamos mucho por chat
+                y eso nozhe me gusta, es bueno creo JAJAJA.
+
+                <br><br>
+
+                pero mira, se que no te ise las frases asi que aqui te ago
+                la frase del dia de hoy, que esta si la ise pensando mucho
+                en ti.
+
+                <br><br>
+
+                y esta es la frase:
+
+                <br><br>
+
+                <em>
+
+                “Quizá no existan palabras suficientes para explicar lo
+                especial que eres para mí, pero aun así quiero intentarlo.
+                Entre toda la oscuridad que a veces parece rodearnos, tú
+                apareciste como una luz extraña y hermosa, de esas que no
+                ciegan, sino que hacen que uno quiera quedarse mirando un
+                poco más.
+
+                <br><br>
+
+                Hay algo en ti que no sé explicar… algo que me hace pensar
+                que incluso las cosas más oscuras pueden tener belleza.
+                Como una luna escondida entre nubes, como una rosa negra
+                creciendo en medio de un jardín muerto, como una pequeña
+                llama que se niega a apagarse aunque el mundo entero sople
+                sobre ella.
+
+                <br><br>
+
+                Y si algún día sientes que todo se vuelve demasiado pesado,
+                quiero que recuerdes que no tienes que atravesarlo todo sola.
+                No prometo poder arreglar cada problema ni borrar cada
+                tristeza, pero sí puedo prometerte que, mientras me permitas
+                estar a tu lado, intentaré ser ese lugar donde puedas descansar
+                un momento, hablar sin miedo y simplemente ser tú.
+
+                <br><br>
+
+                Porque entre millones de personas, hay algunas que simplemente
+                pasan… y luego están aquellas que dejan una marca en nosotros
+                sin siquiera darse cuenta. Tú eres de esas personas. Y aunque
+                quizá nunca pueda explicarte completamente cuánto significas
+                para mí, espero que algún día puedas mirar estas palabras y
+                entender que, incluso en mi lado más oscuro, siempre habrá un
+                pequeño rincón iluminado por ti.
+
+                <br><br>
+
+                Así que si alguna vez la noche se vuelve demasiado larga,
+                mira hacia la luna y recuerda que, en algún lugar, alguien
+                estará deseando que encuentres tu propia luz otra vez.
+
+                <br><br>
+
+                Y si alguna vez dudas de lo increíble que eres, déjame
+                recordártelo yo.”
+
+                </em>
+
+                <br><br>
+
+                🖤🌙🥀
+
+            </p>
+
+        </div>
+
+
+        <!-- BOLSILLO -->
+
+        <div class="bolsillo"></div>
+
+
+        <!-- SOLAPA -->
+
+        <div class="solapa"></div>
+
+
+        <!-- SELLO -->
+
+        <div class="sello">
+            ✦
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="indicacion">
+    🖤 HAZ CLIC EN EL SOBRE 🖤
+</div>
+
+
+<script>
+
+const sobre =
+    document.getElementById("sobre");
+
+sobre.addEventListener(
+    "click",
+    function() {
+
+        sobre.classList.toggle(
+            "abierto"
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>
